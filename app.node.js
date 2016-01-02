@@ -587,7 +587,7 @@ module.exports =
       value: function render() {
         return _react2["default"].createElement(
           "a",
-          { href: "https://noobskins-2.herokuapp.com/api/auth/steam?returnUrl=http://localhost:3000" },
+          { href: "https://noobskins-2.herokuapp.com/api/auth/steam?returnUrl=https://noobskins.github.io" },
           _react2["default"].createElement("img", { src: "http://steamcommunity-a.akamaihd.net/public/images/signinthroughsteam/sits_small.png" })
         );
       }
