@@ -65,7 +65,7 @@ module.exports =
 
   var _react2 = _interopRequireDefault(_react);
 
-  var _reactDom = __webpack_require__(20);
+  var _reactDom = __webpack_require__(23);
 
   var _reactDom2 = _interopRequireDefault(_reactDom);
 
@@ -81,19 +81,19 @@ module.exports =
 
   var routes = {
     '/404': function _() {
-      return __webpack_require__(8);
-    }, '/500': function _() {
-      return __webpack_require__(9);
-    }, '/about': function about() {
       return __webpack_require__(10);
-    }, '/blog': function blog() {
+    }, '/500': function _() {
       return __webpack_require__(11);
-    }, '/blog/test-article-one': function blogTestArticleOne() {
+    }, '/about': function about() {
       return __webpack_require__(12);
-    }, '/blog/test-article-two': function blogTestArticleTwo() {
+    }, '/blog': function blog() {
       return __webpack_require__(13);
-    }, '/': function _() {
+    }, '/blog/test-article-one': function blogTestArticleOne() {
       return __webpack_require__(14);
+    }, '/blog/test-article-two': function blogTestArticleTwo() {
+      return __webpack_require__(15);
+    }, '/': function _() {
+      return __webpack_require__(16);
     } }; // Auto-generated on build. See tools/lib/routes-loader.js
 
   var route = function route(path, callback) {
@@ -239,11 +239,11 @@ module.exports =
 
   var _fbjsLibExecutionEnvironment = __webpack_require__(4);
 
-  var _historyLibCreateBrowserHistory = __webpack_require__(18);
+  var _historyLibCreateBrowserHistory = __webpack_require__(20);
 
   var _historyLibCreateBrowserHistory2 = _interopRequireDefault(_historyLibCreateBrowserHistory);
 
-  var _historyLibUseQueries = __webpack_require__(19);
+  var _historyLibUseQueries = __webpack_require__(21);
 
   var _historyLibUseQueries2 = _interopRequireDefault(_historyLibUseQueries);
 
@@ -288,37 +288,92 @@ module.exports =
 
   var _react2 = _interopRequireDefault(_react);
 
-  __webpack_require__(15);
+  var _reactCookie = __webpack_require__(22);
 
-  var _Navigation = __webpack_require__(7);
+  var _reactCookie2 = _interopRequireDefault(_reactCookie);
+
+  __webpack_require__(17);
+
+  var _Navigation = __webpack_require__(9);
 
   var _Navigation2 = _interopRequireDefault(_Navigation);
 
   var Layout = (function (_Component) {
     _inherits(Layout, _Component);
 
-    function Layout() {
-      _classCallCheck(this, Layout);
-
-      _get(Object.getPrototypeOf(Layout.prototype), 'constructor', this).apply(this, arguments);
-    }
-
-    _createClass(Layout, [{
-      key: 'render',
-      value: function render() {
-        return _react2['default'].createElement(
-          'div',
-          { className: 'Layout' },
-          _react2['default'].createElement(_Navigation2['default'], null),
-          this.props.children
-        );
-      }
-    }], [{
+    _createClass(Layout, null, [{
       key: 'propTypes',
       value: {
         children: _react.PropTypes.element.isRequired
       },
       enumerable: true
+    }]);
+
+    function Layout(props) {
+      _classCallCheck(this, Layout);
+
+      _get(Object.getPrototypeOf(Layout.prototype), 'constructor', this).call(this, props);
+      this.state = {
+        isLogged: false,
+        username: ""
+      };
+    }
+
+    _createClass(Layout, [{
+      key: 'getUser',
+      value: function getUser() {
+        var self = this;
+        var apiToken = location.search.split('token=')[1];
+
+        if (apiToken) {
+          _reactCookie2['default'].save('apiToken', apiToken);
+        }
+
+        var apiCookie = _reactCookie2['default'].load('apiToken');
+
+        if (apiCookie) {
+          fetch('http://localhost:8080/api/users/my', {
+            'mode': 'cors',
+            'headers': {
+              'x-access-token': apiCookie
+            }
+          }).then((function (response) {
+            return response.json();
+          }).bind(self)).then((function (json) {
+            self.setState({
+              isLogged: true,
+              username: "tempname",
+              userAjaxDone: true
+            });
+          }).bind(self))['catch']((function (err) {
+            // TODO - Handle error.
+          }).bind(self));
+        } else {
+          self.setState({
+            userAjaxDone: true
+          });
+        }
+      }
+    }, {
+      key: 'componentDidMount',
+      value: function componentDidMount() {
+        this.getUser();
+      }
+    }, {
+      key: 'render',
+      value: function render() {
+        var _this = this;
+
+        return _react2['default'].createElement(
+          'div',
+          { className: 'Layout' },
+          _react2['default'].createElement('script', { src: 'https://code.jquery.com/jquery-2.1.4.min.js', type: 'text/javascript' }),
+          (function () {
+            if (_this.state.userAjaxDone) return _react2['default'].createElement(_Navigation2['default'], { isLogged: _this.state.isLogged, username: _this.state.username });
+          })(),
+          this.props.children
+        );
+      }
     }]);
 
     return Layout;
@@ -363,7 +418,7 @@ module.exports =
 
   var _react2 = _interopRequireDefault(_react);
 
-  __webpack_require__(16);
+  __webpack_require__(18);
 
   var _libLocation = __webpack_require__(3);
 
@@ -448,6 +503,106 @@ module.exports =
 /* 7 */
 /***/ function(module, exports, __webpack_require__) {
 
+  'use strict';
+
+  Object.defineProperty(exports, '__esModule', {
+      value: true
+  });
+
+  var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+  var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+  function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+  var _react = __webpack_require__(1);
+
+  var _react2 = _interopRequireDefault(_react);
+
+  var LoggedInComponent = (function (_Component) {
+      _inherits(LoggedInComponent, _Component);
+
+      function LoggedInComponent() {
+          _classCallCheck(this, LoggedInComponent);
+
+          _get(Object.getPrototypeOf(LoggedInComponent.prototype), 'constructor', this).apply(this, arguments);
+      }
+
+      _createClass(LoggedInComponent, [{
+          key: 'render',
+          value: function render() {
+              return _react2['default'].createElement(
+                  'p',
+                  null,
+                  'Welcome'
+              );
+          }
+      }]);
+
+      return LoggedInComponent;
+  })(_react.Component);
+
+  exports['default'] = LoggedInComponent;
+  module.exports = exports['default'];
+
+/***/ },
+/* 8 */
+/***/ function(module, exports, __webpack_require__) {
+
+  "use strict";
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+
+  var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+  var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+  function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+  var _react = __webpack_require__(1);
+
+  var _react2 = _interopRequireDefault(_react);
+
+  var LoginButton = (function (_Component) {
+    _inherits(LoginButton, _Component);
+
+    function LoginButton() {
+      _classCallCheck(this, LoginButton);
+
+      _get(Object.getPrototypeOf(LoginButton.prototype), "constructor", this).apply(this, arguments);
+    }
+
+    _createClass(LoginButton, [{
+      key: "render",
+      value: function render() {
+        return _react2["default"].createElement(
+          "a",
+          { href: "http://localhost:8080/api/auth/steam?returnUrl=http://localhost:3000" },
+          _react2["default"].createElement("img", { src: "http://steamcommunity-a.akamaihd.net/public/images/signinthroughsteam/sits_small.png" })
+        );
+      }
+    }]);
+
+    return LoginButton;
+  })(_react.Component);
+
+  exports["default"] = LoginButton;
+  module.exports = exports["default"];
+
+/***/ },
+/* 9 */
+/***/ function(module, exports, __webpack_require__) {
+
   /**
    * React Static Boilerplate
    * https://github.com/koistya/react-static-boilerplate
@@ -474,24 +629,34 @@ module.exports =
 
   var _react2 = _interopRequireDefault(_react);
 
-  __webpack_require__(17);
+  __webpack_require__(19);
+
+  var _LoginButton = __webpack_require__(8);
+
+  var _LoginButton2 = _interopRequireDefault(_LoginButton);
+
+  var _LoggedInComponent = __webpack_require__(7);
+
+  var _LoggedInComponent2 = _interopRequireDefault(_LoggedInComponent);
 
   var _Link = __webpack_require__(6);
 
   var _Link2 = _interopRequireDefault(_Link);
 
-  var _default = (function (_Component) {
-    _inherits(_default, _Component);
+  var Navigation = (function (_Component) {
+    _inherits(Navigation, _Component);
 
-    function _default() {
-      _classCallCheck(this, _default);
+    function Navigation() {
+      _classCallCheck(this, Navigation);
 
-      _get(Object.getPrototypeOf(_default.prototype), 'constructor', this).apply(this, arguments);
+      _get(Object.getPrototypeOf(Navigation.prototype), 'constructor', this).apply(this, arguments);
     }
 
-    _createClass(_default, [{
+    _createClass(Navigation, [{
       key: 'render',
       value: function render() {
+        var _this = this;
+
         return _react2['default'].createElement(
           'ul',
           { className: 'Navigation', role: 'menu' },
@@ -501,7 +666,7 @@ module.exports =
             _react2['default'].createElement(
               'a',
               { className: 'Navigation-link', href: '/', onClick: _Link2['default'].handleClick },
-              'Home'
+              'Hom1e'
             )
           ),
           _react2['default'].createElement(
@@ -512,19 +677,26 @@ module.exports =
               { className: 'Navigation-link', href: '/about', onClick: _Link2['default'].handleClick },
               'About'
             )
+          ),
+          _react2['default'].createElement(
+            'li',
+            null,
+            (function () {
+              return _this.props.isLogged ? _react2['default'].createElement(_LoggedInComponent2['default'], { username: _this.props.username }) : _react2['default'].createElement(_LoginButton2['default'], null);
+            })()
           )
         );
       }
     }]);
 
-    return _default;
+    return Navigation;
   })(_react.Component);
 
-  exports['default'] = _default;
+  exports['default'] = Navigation;
   module.exports = exports['default'];
 
 /***/ },
-/* 8 */
+/* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
   /**
@@ -589,7 +761,7 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 9 */
+/* 11 */
 /***/ function(module, exports, __webpack_require__) {
 
   /**
@@ -660,7 +832,7 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 10 */
+/* 12 */
 /***/ function(module, exports, __webpack_require__) {
 
   /**
@@ -725,7 +897,7 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 11 */
+/* 13 */
 /***/ function(module, exports, __webpack_require__) {
 
   /**
@@ -790,7 +962,7 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 12 */
+/* 14 */
 /***/ function(module, exports, __webpack_require__) {
 
   /**
@@ -855,7 +1027,7 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 13 */
+/* 15 */
 /***/ function(module, exports, __webpack_require__) {
 
   /**
@@ -920,7 +1092,7 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 14 */
+/* 16 */
 /***/ function(module, exports, __webpack_require__) {
 
   /**
@@ -985,7 +1157,7 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 15 */
+/* 17 */
 /***/ function(module, exports, __webpack_require__) {
 
   exports = module.exports = __webpack_require__(2)();
@@ -999,7 +1171,7 @@ module.exports =
 
 
 /***/ },
-/* 16 */
+/* 18 */
 /***/ function(module, exports, __webpack_require__) {
 
   exports = module.exports = __webpack_require__(2)();
@@ -1013,7 +1185,7 @@ module.exports =
 
 
 /***/ },
-/* 17 */
+/* 19 */
 /***/ function(module, exports, __webpack_require__) {
 
   exports = module.exports = __webpack_require__(2)();
@@ -1027,19 +1199,25 @@ module.exports =
 
 
 /***/ },
-/* 18 */
+/* 20 */
 /***/ function(module, exports) {
 
   module.exports = require("history/lib/createBrowserHistory");
 
 /***/ },
-/* 19 */
+/* 21 */
 /***/ function(module, exports) {
 
   module.exports = require("history/lib/useQueries");
 
 /***/ },
-/* 20 */
+/* 22 */
+/***/ function(module, exports) {
+
+  module.exports = require("react-cookie");
+
+/***/ },
+/* 23 */
 /***/ function(module, exports) {
 
   module.exports = require("react-dom");
