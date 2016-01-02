@@ -332,7 +332,7 @@ module.exports =
         var apiCookie = _reactCookie2['default'].load('apiToken');
 
         if (apiCookie) {
-          fetch('http://localhost:8080/api/users/my', {
+          fetch('https://noobskins-2.herokuapp.com/api/users/my', {
             'mode': 'cors',
             'headers': {
               'x-access-token': apiCookie
@@ -587,7 +587,7 @@ module.exports =
       value: function render() {
         return _react2["default"].createElement(
           "a",
-          { href: "http://localhost:8080/api/auth/steam?returnUrl=http://localhost:3000" },
+          { href: "https://noobskins-2.herokuapp.com/api/auth/steam?returnUrl=http://localhost:3000" },
           _react2["default"].createElement("img", { src: "http://steamcommunity-a.akamaihd.net/public/images/signinthroughsteam/sits_small.png" })
         );
       }
