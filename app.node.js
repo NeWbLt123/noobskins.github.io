@@ -672,7 +672,7 @@ module.exports =
       value: function render() {
         return _react2['default'].createElement(
           'a',
-          { className: 'loginButton', href: 'http://localhost:8080/api/auth/steam?returnUrl=http://localhost:3000' },
+          { className: 'loginButton', href: 'https://noobskins-2.herokuapp.com/api/auth/steam?returnUrl=https://noobskins.github.io' },
           _react2['default'].createElement(_materialUiLibRaisedButton2['default'], { className: 'test', label: 'Steam login', secondary: true, labelPosition: 'after' })
         );
       }
