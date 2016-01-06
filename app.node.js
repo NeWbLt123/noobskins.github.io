@@ -695,7 +695,9 @@ module.exports =
               userInformationReceived: true
             });
           }).bind(self))['catch']((function (err) {
-            // TODO - Handle error.
+            this.setState({
+              userInformationRequested: true
+            });
           }).bind(self));
         } else {
           this.setState({
