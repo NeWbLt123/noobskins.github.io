@@ -678,7 +678,7 @@ module.exports =
         }
 
         var apiCookie = _reactCookie2['default'].load('apiToken');
-
+        alet(apiCookie);
         if (apiCookie) {
           var _isLoggedPromise = fetch('https://noobskins-2.herokuapp.com/api/users/my', {
             'mode': 'cors',
