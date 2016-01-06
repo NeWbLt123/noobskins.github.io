@@ -435,7 +435,7 @@ module.exports =
         };
         return _react2['default'].createElement(
           'a',
-          { style: styles.loginButton, href: 'https://noobskins-2.herokuapp.com/api/auth/steam?returnUrl=http://localhost:3000' },
+          { style: styles.loginButton, href: 'https://noobskins-2.herokuapp.com/api/auth/steam?returnUrl=https://noobskins.github.io' },
           _react2['default'].createElement(_materialUiLibRaisedButton2['default'], { label: 'Steam login', secondary: true, labelPosition: 'after' })
         );
       }
@@ -680,7 +680,7 @@ module.exports =
         var apiCookie = _reactCookie2['default'].load('apiToken');
 
         if (apiCookie) {
-          var _isLoggedPromise = fetch('http://localhost:8080/api/users/my', {
+          var _isLoggedPromise = fetch('https://noobskins-2.herokuapp.com/api/users/my', {
             'mode': 'cors',
             'headers': {
               'x-access-token': apiCookie
