@@ -678,32 +678,48 @@ module.exports =
         }
 
         var apiCookie = _reactCookie2['default'].load('apiToken');
-        alert(apiCookie);
         if (apiCookie) {
-          var _isLoggedPromise = fetch('https://noobskins-2.herokuapp.com/api/users/my', {
-            'mode': 'cors',
-            'headers': {
+          $.ajax({
+            url: 'https://noobskins-2.herokuapp.com/api/users/my',
+            type: 'GET',
+            headers: {
               'x-access-token': apiCookie
+            }, success: function success() {
+              console.log('patate');
+              self.setState({
+                userInformationRequested: true,
+                userInformationReceived: true
+              }).bind(self);
             }
+
           });
 
-          _isLoggedPromise.then(function (response) {
-            return response.json();
-          }).then((function (json) {
-            self.setState({
-              userInformationRequested: true,
-              userInformationReceived: true
-            });
-          }).bind(self))['catch']((function (err) {
+          // const isLoggedPromise = fetch('https://noobskins-2.herokuapp.com/api/users/my', {
+          //   'mode': 'cors',
+          //   'headers': {
+          //     'x-access-token': apiCookie,
+          //   },
+          // });
+          //
+          // isLoggedPromise.then(function(response) {
+          //   return response.json();
+          // })
+          // .then(function(json) {
+          //   self.setState({
+          //     userInformationRequested: true,
+          //     userInformationReceived: true,
+          //   });
+          // }.bind(self))
+          // .catch(function(err) {
+          //   this.setState({
+          //     userInformationRequested: true,
+          //   });
+          // }.bind(self));
+        } else {
             this.setState({
               userInformationRequested: true
             });
-          }).bind(self));
-        } else {
-          this.setState({
-            userInformationRequested: true
-          });
-        }
+          }
       }
     }, {
       key: 'render',
@@ -737,8 +753,6 @@ module.exports =
                   'div',
                   { className: 'right-nav' },
                   (function () {
-                    console.log(_this.state.userInformationRequested);
-                    console.log(_this.state.userInformationReceived);
                     if (_this.state.userInformationRequested) {
                       if (_this.state.userInformationReceived) {
                         return _react2['default'].createElement(_materialUiLibAvatar2['default'], { style: styles.avatar, icon: _react2['default'].createElement(_materialUiLibSvgIconsFileFolder2['default'], null) });
