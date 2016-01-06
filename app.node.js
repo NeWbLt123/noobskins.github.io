@@ -65,13 +65,13 @@ module.exports =
 
   var _react2 = _interopRequireDefault(_react);
 
-  var _reactDom = __webpack_require__(35);
+  var _reactDom = __webpack_require__(32);
 
   var _reactDom2 = _interopRequireDefault(_reactDom);
 
-  var _fbjsLibExecutionEnvironment = __webpack_require__(4);
+  var _fbjsLibExecutionEnvironment = __webpack_require__(3);
 
-  var _libLocation = __webpack_require__(3);
+  var _libLocation = __webpack_require__(9);
 
   var _libLocation2 = _interopRequireDefault(_libLocation);
 
@@ -81,19 +81,19 @@ module.exports =
 
   var routes = {
     '/404': function _() {
-      return __webpack_require__(11);
+      return __webpack_require__(10);
     }, '/500': function _() {
-      return __webpack_require__(12);
+      return __webpack_require__(11);
     }, '/about': function about() {
-      return __webpack_require__(13);
+      return __webpack_require__(12);
     }, '/blog': function blog() {
-      return __webpack_require__(14);
+      return __webpack_require__(13);
     }, '/blog/test-article-one': function blogTestArticleOne() {
-      return __webpack_require__(15);
+      return __webpack_require__(14);
     }, '/blog/test-article-two': function blogTestArticleTwo() {
-      return __webpack_require__(16);
+      return __webpack_require__(15);
     }, '/': function _() {
-      return __webpack_require__(17);
+      return __webpack_require__(16);
     } }; // Auto-generated on build. See tools/lib/routes-loader.js
 
   var route = function route(path, callback) {
@@ -221,42 +221,15 @@ module.exports =
 
 /***/ },
 /* 3 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
-  /**
-   * React Static Boilerplate
-   * https://github.com/koistya/react-static-boilerplate
-   * Copyright (c) Konstantin Tarkus (@koistya) | MIT license
-   */
-
-  'use strict';
-
-  Object.defineProperty(exports, '__esModule', {
-    value: true
-  });
-
-  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-  var _fbjsLibExecutionEnvironment = __webpack_require__(4);
-
-  var _historyLibCreateBrowserHistory = __webpack_require__(23);
-
-  var _historyLibCreateBrowserHistory2 = _interopRequireDefault(_historyLibCreateBrowserHistory);
-
-  var _historyLibUseQueries = __webpack_require__(24);
-
-  var _historyLibUseQueries2 = _interopRequireDefault(_historyLibUseQueries);
-
-  var location = _fbjsLibExecutionEnvironment.canUseDOM ? (0, _historyLibUseQueries2['default'])(_historyLibCreateBrowserHistory2['default'])() : {};
-
-  exports['default'] = location;
-  module.exports = exports['default'];
+  module.exports = require("fbjs/lib/ExecutionEnvironment");
 
 /***/ },
 /* 4 */
 /***/ function(module, exports) {
 
-  module.exports = require("fbjs/lib/ExecutionEnvironment");
+  module.exports = require("material-ui/lib/raised-button");
 
 /***/ },
 /* 5 */
@@ -270,19 +243,19 @@ module.exports =
 
   function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-  var _materialUiLibStylesColors = __webpack_require__(28);
+  var _materialUiLibStylesColors = __webpack_require__(25);
 
   var _materialUiLibStylesColors2 = _interopRequireDefault(_materialUiLibStylesColors);
 
-  var _materialUiLibUtilsColorManipulator = __webpack_require__(33);
+  var _materialUiLibUtilsColorManipulator = __webpack_require__(30);
 
   var _materialUiLibUtilsColorManipulator2 = _interopRequireDefault(_materialUiLibUtilsColorManipulator);
 
-  var _materialUiLibStylesSpacing = __webpack_require__(29);
+  var _materialUiLibStylesSpacing = __webpack_require__(26);
 
   var _materialUiLibStylesSpacing2 = _interopRequireDefault(_materialUiLibStylesSpacing);
 
-  var _materialUiLibStylesZIndex = __webpack_require__(31);
+  var _materialUiLibStylesZIndex = __webpack_require__(28);
 
   var _materialUiLibStylesZIndex2 = _interopRequireDefault(_materialUiLibStylesZIndex);
 
@@ -317,6 +290,7 @@ module.exports =
    * Copyright (c) Konstantin Tarkus (@koistya) | MIT license
    */
 
+  /* React components */
   'use strict';
 
   Object.defineProperty(exports, '__esModule', {
@@ -337,23 +311,31 @@ module.exports =
 
   var _react2 = _interopRequireDefault(_react);
 
-  var _reactCookie = __webpack_require__(34);
+  var _reactCookie = __webpack_require__(31);
 
   var _reactCookie2 = _interopRequireDefault(_reactCookie);
 
-  __webpack_require__(18);
+  var _materialUiLibStylesThemeManager = __webpack_require__(27);
 
-  var _Navigation = __webpack_require__(10);
+  var _materialUiLibStylesThemeManager2 = _interopRequireDefault(_materialUiLibStylesThemeManager);
 
-  var _Navigation2 = _interopRequireDefault(_Navigation);
+  /* Css */
+
+  __webpack_require__(17);
+
+  /* Other files and images */
 
   var _CustomTheme = __webpack_require__(5);
 
   var _CustomTheme2 = _interopRequireDefault(_CustomTheme);
 
-  var _materialUiLibStylesThemeManager = __webpack_require__(30);
+  // Custom theme applied to the whole application.
 
-  var _materialUiLibStylesThemeManager2 = _interopRequireDefault(_materialUiLibStylesThemeManager);
+  /* Children components */
+
+  var _Navigation = __webpack_require__(8);
+
+  var _Navigation2 = _interopRequireDefault(_Navigation);
 
   var Layout = (function (_Component) {
     _inherits(Layout, _Component);
@@ -371,7 +353,6 @@ module.exports =
 
       _get(Object.getPrototypeOf(Layout.prototype), 'constructor', this).call(this, props);
       this.state = {
-        isLogged: false,
         username: ""
       };
     }
@@ -382,6 +363,11 @@ module.exports =
         return {
           muiTheme: _materialUiLibStylesThemeManager2['default'].getMuiTheme(_CustomTheme2['default'])
         };
+      }
+    }, {
+      key: 'componentDidMount',
+      value: function componentDidMount() {
+        this.getUser();
       }
     }, {
       key: 'getUser',
@@ -396,32 +382,23 @@ module.exports =
         var apiCookie = _reactCookie2['default'].load('apiToken');
 
         if (apiCookie) {
-          fetch('https://noobskins-2.herokuapp.com/api/users/my', {
+          var isLoggedPromise = fetch('http://localhost:8080/api/users/my', {
             'mode': 'cors',
             'headers': {
               'x-access-token': apiCookie
             }
-          }).then((function (response) {
+          });
+
+          isLoggedPromise.then(function (response) {
             return response.json();
-          }).bind(self)).then((function (json) {
+          }).then((function (json) {
             self.setState({
-              isLogged: true,
-              username: "tempname",
-              userAjaxDone: true
+              username: 'tempname'
             });
           }).bind(self))['catch']((function (err) {
             // TODO - Handle error.
           }).bind(self));
-        } else {
-          self.setState({
-            userAjaxDone: true
-          });
         }
-      }
-    }, {
-      key: 'componentDidMount',
-      value: function componentDidMount() {
-        this.getUser();
       }
     }, {
       key: 'render',
@@ -433,10 +410,10 @@ module.exports =
           { className: 'Layout' },
           _react2['default'].createElement('script', { src: 'https://code.jquery.com/jquery-2.1.4.min.js', type: 'text/javascript' }),
           (function () {
-            if (_this.state.userAjaxDone) return _react2['default'].createElement(
+            return _react2['default'].createElement(
               'div',
               null,
-              _react2['default'].createElement(_Navigation2['default'], { isLogged: _this.state.isLogged, username: _this.state.username }),
+              _react2['default'].createElement(_Navigation2['default'], { username: _this.state.username }),
               _react2['default'].createElement('div', { className: 'fullBanner' })
             );
           })(),
@@ -461,177 +438,7 @@ module.exports =
 /* 7 */
 /***/ function(module, exports, __webpack_require__) {
 
-  /**
-   * React Static Boilerplate
-   * https://github.com/koistya/react-static-boilerplate
-   * Copyright (c) Konstantin Tarkus (@koistya) | MIT license
-   */
-
-  'use strict';
-
-  Object.defineProperty(exports, '__esModule', {
-    value: true
-  });
-
-  var _this = this;
-
-  var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-  var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
-  var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
-
-  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-  function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
-
-  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
-
-  function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-  var _react = __webpack_require__(1);
-
-  var _react2 = _interopRequireDefault(_react);
-
-  __webpack_require__(19);
-
-  var _libLocation = __webpack_require__(3);
-
-  var _libLocation2 = _interopRequireDefault(_libLocation);
-
-  function isLeftClickEvent(event) {
-    return event.button === 0;
-  }
-
-  function isModifiedEvent(event) {
-    return !!(event.metaKey || event.altKey || event.ctrlKey || event.shiftKey);
-  }
-
-  var Link = (function (_Component) {
-    _inherits(Link, _Component);
-
-    function Link() {
-      _classCallCheck(this, Link);
-
-      _get(Object.getPrototypeOf(Link.prototype), 'constructor', this).apply(this, arguments);
-    }
-
-    _createClass(Link, [{
-      key: 'render',
-      value: function render() {
-        var _props = this.props;
-        var to = _props.to;
-        var children = _props.children;
-
-        var props = _objectWithoutProperties(_props, ['to', 'children']);
-
-        return _react2['default'].createElement(
-          'a',
-          _extends({ onClick: Link.handleClick.bind(this) }, props),
-          children
-        );
-      }
-    }], [{
-      key: 'propTypes',
-      value: {
-        to: _react.PropTypes.string.isRequired,
-        children: _react.PropTypes.element.isRequired,
-        state: _react.PropTypes.object,
-        onClick: _react.PropTypes.func
-      },
-      enumerable: true
-    }, {
-      key: 'handleClick',
-      value: function value(event) {
-        var allowTransition = true;
-        var clickResult = undefined;
-
-        if (_this.props && _this.props.onClick) {
-          clickResult = _this.props.onClick(event);
-        }
-
-        if (isModifiedEvent(event) || !isLeftClickEvent(event)) {
-          return;
-        }
-
-        if (clickResult === false || event.defaultPrevented === true) {
-          allowTransition = false;
-        }
-
-        event.preventDefault();
-
-        if (allowTransition) {
-          var link = event.currentTarget;
-          _libLocation2['default'].pushState(_this.props && _this.props.state || null, _this.props && _this.props.to || link.pathname + link.search);
-        }
-      },
-      enumerable: true
-    }]);
-
-    return Link;
-  })(_react.Component);
-
-  exports['default'] = Link;
-  module.exports = exports['default'];
-
-/***/ },
-/* 8 */
-/***/ function(module, exports, __webpack_require__) {
-
-  'use strict';
-
-  Object.defineProperty(exports, '__esModule', {
-      value: true
-  });
-
-  var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
-  var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
-
-  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
-
-  function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-  var _react = __webpack_require__(1);
-
-  var _react2 = _interopRequireDefault(_react);
-
-  var _materialUiLibAvatar = __webpack_require__(26);
-
-  var _materialUiLibAvatar2 = _interopRequireDefault(_materialUiLibAvatar);
-
-  var _materialUiLibSvgIconsFileFolder = __webpack_require__(32);
-
-  var _materialUiLibSvgIconsFileFolder2 = _interopRequireDefault(_materialUiLibSvgIconsFileFolder);
-
-  var LoggedInComponent = (function (_Component) {
-      _inherits(LoggedInComponent, _Component);
-
-      function LoggedInComponent() {
-          _classCallCheck(this, LoggedInComponent);
-
-          _get(Object.getPrototypeOf(LoggedInComponent.prototype), 'constructor', this).apply(this, arguments);
-      }
-
-      _createClass(LoggedInComponent, [{
-          key: 'render',
-          value: function render() {
-              return _react2['default'].createElement(_materialUiLibAvatar2['default'], { icon: _react2['default'].createElement(_materialUiLibSvgIconsFileFolder2['default'], null) });
-          }
-      }]);
-
-      return LoggedInComponent;
-  })(_react.Component);
-
-  exports['default'] = LoggedInComponent;
-  module.exports = exports['default'];
-
-/***/ },
-/* 9 */
-/***/ function(module, exports, __webpack_require__) {
-
+  /* React components */
   'use strict';
 
   Object.defineProperty(exports, '__esModule', {
@@ -652,11 +459,9 @@ module.exports =
 
   var _react2 = _interopRequireDefault(_react);
 
-  var _materialUiLibRaisedButton = __webpack_require__(27);
+  var _materialUiLibRaisedButton = __webpack_require__(4);
 
   var _materialUiLibRaisedButton2 = _interopRequireDefault(_materialUiLibRaisedButton);
-
-  __webpack_require__(20);
 
   var LoginButton = (function (_Component) {
     _inherits(LoginButton, _Component);
@@ -670,10 +475,15 @@ module.exports =
     _createClass(LoginButton, [{
       key: 'render',
       value: function render() {
+        var styles = {
+          loginButton: {
+            lineHeight: '0px'
+          }
+        };
         return _react2['default'].createElement(
           'a',
-          { className: 'loginButton', href: 'https://noobskins-2.herokuapp.com/api/auth/steam?returnUrl=https://noobskins.github.io' },
-          _react2['default'].createElement(_materialUiLibRaisedButton2['default'], { className: 'test', label: 'Steam login', secondary: true, labelPosition: 'after' })
+          { style: styles.loginButton, href: 'https://noobskins-2.herokuapp.com/api/auth/steam?returnUrl=http://localhost:3000' },
+          _react2['default'].createElement(_materialUiLibRaisedButton2['default'], { label: 'Steam login', secondary: true, labelPosition: 'after' })
         );
       }
     }]);
@@ -685,15 +495,10 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 10 */
+/* 8 */
 /***/ function(module, exports, __webpack_require__) {
 
-  /**
-   * React Static Boilerplate
-   * https://github.com/koistya/react-static-boilerplate
-   * Copyright (c) Konstantin Tarkus (@koistya) | MIT license
-   */
-
+  /* React components */
   'use strict';
 
   Object.defineProperty(exports, '__esModule', {
@@ -714,51 +519,85 @@ module.exports =
 
   var _react2 = _interopRequireDefault(_react);
 
-  __webpack_require__(21);
+  var _materialUiLibAvatar = __webpack_require__(23);
 
-  var _LoginButton = __webpack_require__(9);
+  var _materialUiLibAvatar2 = _interopRequireDefault(_materialUiLibAvatar);
 
-  var _LoginButton2 = _interopRequireDefault(_LoginButton);
+  var _materialUiLibSvgIconsFileFolder = __webpack_require__(29);
 
-  var _materialUiLibAppBar = __webpack_require__(25);
+  var _materialUiLibSvgIconsFileFolder2 = _interopRequireDefault(_materialUiLibSvgIconsFileFolder);
 
-  var _materialUiLibAppBar2 = _interopRequireDefault(_materialUiLibAppBar);
+  var _reactResponsive = __webpack_require__(34);
 
-  var _LoggedInComponent = __webpack_require__(8);
+  var _reactResponsive2 = _interopRequireDefault(_reactResponsive);
 
-  var _LoggedInComponent2 = _interopRequireDefault(_LoggedInComponent);
+  var _materialUiLibRaisedButton = __webpack_require__(4);
 
-  var _Link = __webpack_require__(7);
+  var _materialUiLibRaisedButton2 = _interopRequireDefault(_materialUiLibRaisedButton);
 
-  var _Link2 = _interopRequireDefault(_Link);
+  var _materialUiLibIconButton = __webpack_require__(24);
 
-  var _logoPng = __webpack_require__(22);
+  var _materialUiLibIconButton2 = _interopRequireDefault(_materialUiLibIconButton);
+
+  var _materialUi = __webpack_require__(22);
+
+  var _materialUi2 = _interopRequireDefault(_materialUi);
+
+  var _reactMaterialIconsIconsNavigationMenu = __webpack_require__(33);
+
+  var _reactMaterialIconsIconsNavigationMenu2 = _interopRequireDefault(_reactMaterialIconsIconsNavigationMenu);
+
+  /* Css */
+
+  __webpack_require__(18);
+
+  /* Other files and images */
+
+  var _logoPng = __webpack_require__(19);
 
   var _logoPng2 = _interopRequireDefault(_logoPng);
+
+  /* Children components */
+
+  var _LoginButton = __webpack_require__(7);
+
+  var _LoginButton2 = _interopRequireDefault(_LoginButton);
 
   var Navigation = (function (_Component) {
     _inherits(Navigation, _Component);
 
-    function Navigation() {
+    function Navigation(props) {
       _classCallCheck(this, Navigation);
 
-      _get(Object.getPrototypeOf(Navigation.prototype), 'constructor', this).apply(this, arguments);
+      _get(Object.getPrototypeOf(Navigation.prototype), 'constructor', this).call(this, props);
+      this.state = {
+        isLogged: false,
+        username: ''
+      };
     }
 
     _createClass(Navigation, [{
       key: 'render',
       value: function render() {
+        var _this = this;
 
         var styles = {
-          logo: {
-            height: '64px'
+          navigationLink: {
+            fontWeight: 'bold'
           },
-          img: {
-            display: 'inline-block'
-          },
-          navbarFixed: {
-            height: '64px'
+          hamburger: {
+            button: {
+              lineHeight: '0px',
+              width: '35px',
+              minWidth: '35px',
+              marginTop: '15px'
+            },
+            icon: {
+              fill: 'white',
+              height: '36px'
+            }
           }
+
         };
 
         return _react2['default'].createElement(
@@ -785,46 +624,73 @@ module.exports =
                 ),
                 _react2['default'].createElement(
                   'div',
-                  { className: 'right-nav hide-on-med-and-down' },
-                  _react2['default'].createElement(_LoginButton2['default'], null)
+                  { className: 'right-nav' },
+                  (function () {
+                    if (_this.props.username !== '') {
+                      return _react2['default'].createElement(_materialUiLibAvatar2['default'], { icon: _react2['default'].createElement(_materialUiLibSvgIconsFileFolder2['default'], null) });
+                    } else {
+                      return _react2['default'].createElement(_LoginButton2['default'], null);
+                    }
+                  })()
                 ),
                 _react2['default'].createElement(
-                  'ul',
-                  { className: 'right hide-on-med-and-down' },
+                  _reactResponsive2['default'],
+                  { maxWidth: 1223 },
                   _react2['default'].createElement(
-                    'li',
-                    null,
+                    'div',
+                    { className: 'right' },
                     _react2['default'].createElement(
                       'a',
-                      { href: '/features' },
-                      'Search'
+                      { href: '/about' },
+                      _react2['default'].createElement(
+                        _materialUiLibRaisedButton2['default'],
+                        { style: styles.hamburger.button, secondary: true },
+                        _react2['default'].createElement(_reactMaterialIconsIconsNavigationMenu2['default'], { style: styles.hamburger.icon })
+                      )
                     )
-                  ),
+                  )
+                ),
+                _react2['default'].createElement(
+                  _reactResponsive2['default'],
+                  { minWidth: 1224 },
                   _react2['default'].createElement(
-                    'li',
-                    null,
+                    'ul',
+                    { className: 'right' },
                     _react2['default'].createElement(
-                      'a',
-                      { href: '/docs/main' },
-                      'Community'
-                    )
-                  ),
-                  _react2['default'].createElement(
-                    'li',
-                    null,
+                      'li',
+                      null,
+                      _react2['default'].createElement(
+                        'a',
+                        { style: styles.navigationLink, href: '/' },
+                        'Search'
+                      )
+                    ),
                     _react2['default'].createElement(
-                      'a',
-                      { href: '/pricing' },
-                      'Partners'
-                    )
-                  ),
-                  _react2['default'].createElement(
-                    'li',
-                    null,
+                      'li',
+                      null,
+                      _react2['default'].createElement(
+                        'a',
+                        { style: styles.navigationLink, href: '/' },
+                        'Community'
+                      )
+                    ),
                     _react2['default'].createElement(
-                      'a',
-                      { href: '/team' },
-                      'Contact Us'
+                      'li',
+                      null,
+                      _react2['default'].createElement(
+                        'a',
+                        { style: styles.navigationLink, href: '/' },
+                        'Partners'
+                      )
+                    ),
+                    _react2['default'].createElement(
+                      'li',
+                      null,
+                      _react2['default'].createElement(
+                        'a',
+                        { style: styles.navigationLink, href: '/' },
+                        'Contact Us'
+                      )
                     )
                   )
                 )
@@ -842,7 +708,40 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 11 */
+/* 9 */
+/***/ function(module, exports, __webpack_require__) {
+
+  /**
+   * React Static Boilerplate
+   * https://github.com/koistya/react-static-boilerplate
+   * Copyright (c) Konstantin Tarkus (@koistya) | MIT license
+   */
+
+  'use strict';
+
+  Object.defineProperty(exports, '__esModule', {
+    value: true
+  });
+
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+  var _fbjsLibExecutionEnvironment = __webpack_require__(3);
+
+  var _historyLibCreateBrowserHistory = __webpack_require__(20);
+
+  var _historyLibCreateBrowserHistory2 = _interopRequireDefault(_historyLibCreateBrowserHistory);
+
+  var _historyLibUseQueries = __webpack_require__(21);
+
+  var _historyLibUseQueries2 = _interopRequireDefault(_historyLibUseQueries);
+
+  var location = _fbjsLibExecutionEnvironment.canUseDOM ? (0, _historyLibUseQueries2['default'])(_historyLibCreateBrowserHistory2['default'])() : {};
+
+  exports['default'] = location;
+  module.exports = exports['default'];
+
+/***/ },
+/* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
   /**
@@ -907,7 +806,7 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 12 */
+/* 11 */
 /***/ function(module, exports, __webpack_require__) {
 
   /**
@@ -978,7 +877,7 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 13 */
+/* 12 */
 /***/ function(module, exports, __webpack_require__) {
 
   /**
@@ -1043,7 +942,7 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 14 */
+/* 13 */
 /***/ function(module, exports, __webpack_require__) {
 
   /**
@@ -1108,7 +1007,7 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 15 */
+/* 14 */
 /***/ function(module, exports, __webpack_require__) {
 
   /**
@@ -1173,7 +1072,7 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 16 */
+/* 15 */
 /***/ function(module, exports, __webpack_require__) {
 
   /**
@@ -1238,7 +1137,7 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 17 */
+/* 16 */
 /***/ function(module, exports, __webpack_require__) {
 
   /**
@@ -1303,7 +1202,7 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 18 */
+/* 17 */
 /***/ function(module, exports, __webpack_require__) {
 
   exports = module.exports = __webpack_require__(2)();
@@ -1317,130 +1216,114 @@ module.exports =
 
 
 /***/ },
+/* 18 */
+/***/ function(module, exports, __webpack_require__) {
+
+  exports = module.exports = __webpack_require__(2)();
+  // imports
+
+
+  // module
+  exports.push([module.id, "/**\r\n * React Static Boilerplate\r\n * https://github.com/koistya/react-static-boilerplate\r\n * Copyright (c) Konstantin Tarkus (@koistya) | MIT license\r\n */\r\n\r\n/**\r\n * React Static Boilerplate\r\n * https://github.com/koistya/react-static-boilerplate\r\n * Copyright (c) Konstantin Tarkus (@koistya) | MIT license\r\n */\r\n\r\n/*\r\n * Scaffolding\r\n * -------------------------------------------------------------------------- */\r\n\r\n/*\r\n * Typography\r\n * -------------------------------------------------------------------------- */\r\n\r\n/*\r\n * Media queries breakpoints\r\n * -------------------------------------------------------------------------- */\r\n\r\n.Navigation {\r\n  display: -webkit-box;\r\n  display: -webkit-flex;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -webkit-box-orient: horizontal;\r\n  -webkit-box-direction: normal;\r\n  -webkit-flex-direction: row;\r\n      -ms-flex-direction: row;\r\n          flex-direction: row;\r\n  margin: 2em 0 5em 0;\r\n  list-style: none;\r\n  -webkit-box-pack: end;\r\n  -webkit-justify-content: flex-end;\r\n      -ms-flex-pack: end;\r\n          justify-content: flex-end;\r\n}\r\n\r\n.Navigation-item {\r\n  padding: 0 2em;\r\n}\r\n\r\n.Navigation-link {\r\n  padding: 0.5em 1em;\r\n  color: #21ce99;\r\n  text-decoration: none;\r\n  text-transform: uppercase;\r\n  cursor: pointer;\r\n}\r\n\r\n.Navigation-link:hover {\r\n  border-bottom: 3px solid #21ce99;\r\n  color: #333;\r\n}\r\n\r\nnav {\r\n    background-color: #fff;\r\n    font-weight: 300;\r\n    width: 100%;\r\n    z-index: 1001;\r\n}\r\n\r\nnav ul {\r\n    margin: 0;\r\n}\r\n\r\nnav ul li {\r\n    -webkit-transition: background-color .3s;\r\n    -o-transition: background-color .3s;\r\n    transition: background-color .3s;\r\n    float: left;\r\n    padding: 0;\r\n}\r\n\r\nnav a, nav ul a {\r\n    color: #212121;\r\n}\r\n\r\nnav ul a {\r\n    font-size: 1rem;\r\n    display: inline-block;\r\n    padding: 0 15px;\r\n    box-sizing: border-box;\r\n    -moz-box-sizing: border-box;\r\n    -webkit-box-sizing: border-box;\r\n}\r\n\r\nnav ul a:hover {\r\n    border-bottom: 3px solid #ffd54f;\r\n}\r\n\r\nul li {\r\n    list-style-type: none;\r\n}\r\n\r\na {\r\n    text-decoration: none;\r\n}\r\n\r\n.navbar-fixed {\r\n    height: 64px;\r\n    position: relative;\r\n}\r\n\r\n.navbar-fixed nav {\r\n    position: fixed;\r\n    height: 64px;\r\n    line-height: 64px;\r\n}\r\n\r\n.nav-wrapper {\r\n    padding: 0 15px;\r\n    position: relative;\r\n    height: 100%;\r\n}\r\n\r\n.brand-logo {\r\n    position: absolute;\r\n    color: #fff;\r\n    display: inline-block;\r\n    font-size: 2.1rem;\r\n    padding: 0;\r\n}\r\n\r\n.right-nav {\r\n    float: right;\r\n    margin-left: 15px;\r\n    width: 125px;\r\n}\r\n\r\n.right {\r\n    float: right !important;\r\n}\r\n\r\nnav .login {\r\n    margin-bottom: 0;\r\n}\r\n", ""]);
+
+  // exports
+
+
+/***/ },
 /* 19 */
-/***/ function(module, exports, __webpack_require__) {
-
-  exports = module.exports = __webpack_require__(2)();
-  // imports
-
-
-  // module
-  exports.push([module.id, "/**\r\n * React Static Boilerplate\r\n * https://github.com/koistya/react-static-boilerplate\r\n * Copyright (c) Konstantin Tarkus (@koistya) | MIT license\r\n */\r\n\r\n.Link {\r\n\r\n}\r\n", ""]);
-
-  // exports
-
-
-/***/ },
-/* 20 */
-/***/ function(module, exports, __webpack_require__) {
-
-  exports = module.exports = __webpack_require__(2)();
-  // imports
-
-
-  // module
-  exports.push([module.id, ".loginButton {\r\n    line-height: 0px !important;\r\n}\r\n", ""]);
-
-  // exports
-
-
-/***/ },
-/* 21 */
-/***/ function(module, exports, __webpack_require__) {
-
-  exports = module.exports = __webpack_require__(2)();
-  // imports
-
-
-  // module
-  exports.push([module.id, "/**\r\n * React Static Boilerplate\r\n * https://github.com/koistya/react-static-boilerplate\r\n * Copyright (c) Konstantin Tarkus (@koistya) | MIT license\r\n */\r\n\r\n/**\r\n * React Static Boilerplate\r\n * https://github.com/koistya/react-static-boilerplate\r\n * Copyright (c) Konstantin Tarkus (@koistya) | MIT license\r\n */\r\n\r\n/*\r\n * Scaffolding\r\n * -------------------------------------------------------------------------- */\r\n\r\n/*\r\n * Typography\r\n * -------------------------------------------------------------------------- */\r\n\r\n/*\r\n * Media queries breakpoints\r\n * -------------------------------------------------------------------------- */\r\n\r\n.Navigation {\r\n  display: -webkit-box;\r\n  display: -webkit-flex;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -webkit-box-orient: horizontal;\r\n  -webkit-box-direction: normal;\r\n  -webkit-flex-direction: row;\r\n      -ms-flex-direction: row;\r\n          flex-direction: row;\r\n  margin: 2em 0 5em 0;\r\n  list-style: none;\r\n  -webkit-box-pack: end;\r\n  -webkit-justify-content: flex-end;\r\n      -ms-flex-pack: end;\r\n          justify-content: flex-end;\r\n}\r\n\r\n.Navigation-item {\r\n  padding: 0 2em;\r\n}\r\n\r\n.Navigation-link {\r\n  padding: 0.5em 1em;\r\n  color: #21ce99;\r\n  text-decoration: none;\r\n  text-transform: uppercase;\r\n  cursor: pointer;\r\n}\r\n\r\n.Navigation-link:hover {\r\n  border-bottom: 3px solid #21ce99;\r\n  color: #333;\r\n}\r\n\r\nnav {\r\n    background-color: #fff;\r\n    font-weight: 300;\r\n    width: 100%;\r\n    z-index: 1001;\r\n}\r\n\r\nnav ul {\r\n    margin: 0;\r\n}\r\n\r\nnav ul li {\r\n    -webkit-transition: background-color .3s;\r\n    -o-transition: background-color .3s;\r\n    transition: background-color .3s;\r\n    float: left;\r\n    padding: 0;\r\n}\r\n\r\nnav a, nav ul a {\r\n    color: #212121;\r\n}\r\n\r\nnav ul a {\r\n    font-size: 1rem;\r\n    display: inline-block;\r\n    padding: 0 15px;\r\n    box-sizing: border-box;\r\n    -moz-box-sizing: border-box;\r\n    -webkit-box-sizing: border-box;\r\n}\r\n\r\nnav ul a:hover {\r\n    border-bottom: 3px solid #ffd54f;\r\n}\r\n\r\nul li {\r\n    list-style-type: none;\r\n}\r\n\r\na {\r\n    text-decoration: none;\r\n}\r\n\r\n.navbar-fixed {\r\n    height: 64px;\r\n    position: relative;\r\n}\r\n\r\n.navbar-fixed nav {\r\n    position: fixed;\r\n    height: 64px;\r\n    line-height: 64px;\r\n}\r\n\r\n.nav-wrapper {\r\n    padding: 0 30px;\r\n    position: relative;\r\n    height: 100%;\r\n}\r\n\r\n.brand-logo {\r\n    position: absolute;\r\n    color: #fff;\r\n    display: inline-block;\r\n    font-size: 2.1rem;\r\n    padding: 0;\r\n}\r\n\r\n.right-nav {\r\n    float: right;\r\n    margin-left: 30px;\r\n}\r\n\r\n.right {\r\n    float: right !important;\r\n}\r\n\r\nnav .login {\r\n    margin-bottom: 0;\r\n}\r\n", ""]);
-
-  // exports
-
-
-/***/ },
-/* 22 */
 /***/ function(module, exports) {
 
   module.exports = "data:image/png;base64,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"
 
 /***/ },
-/* 23 */
+/* 20 */
 /***/ function(module, exports) {
 
   module.exports = require("history/lib/createBrowserHistory");
 
 /***/ },
-/* 24 */
+/* 21 */
 /***/ function(module, exports) {
 
   module.exports = require("history/lib/useQueries");
 
 /***/ },
-/* 25 */
+/* 22 */
 /***/ function(module, exports) {
 
-  module.exports = require("material-ui/lib/app-bar");
+  module.exports = require("material-ui");
 
 /***/ },
-/* 26 */
+/* 23 */
 /***/ function(module, exports) {
 
   module.exports = require("material-ui/lib/avatar");
 
 /***/ },
-/* 27 */
+/* 24 */
 /***/ function(module, exports) {
 
-  module.exports = require("material-ui/lib/raised-button");
+  module.exports = require("material-ui/lib/icon-button");
 
 /***/ },
-/* 28 */
+/* 25 */
 /***/ function(module, exports) {
 
   module.exports = require("material-ui/lib/styles/colors");
 
 /***/ },
-/* 29 */
+/* 26 */
 /***/ function(module, exports) {
 
   module.exports = require("material-ui/lib/styles/spacing");
 
 /***/ },
-/* 30 */
+/* 27 */
 /***/ function(module, exports) {
 
   module.exports = require("material-ui/lib/styles/theme-manager");
 
 /***/ },
-/* 31 */
+/* 28 */
 /***/ function(module, exports) {
 
   module.exports = require("material-ui/lib/styles/zIndex");
 
 /***/ },
-/* 32 */
+/* 29 */
 /***/ function(module, exports) {
 
   module.exports = require("material-ui/lib/svg-icons/file/folder");
 
 /***/ },
-/* 33 */
+/* 30 */
 /***/ function(module, exports) {
 
   module.exports = require("material-ui/lib/utils/color-manipulator");
 
 /***/ },
-/* 34 */
+/* 31 */
 /***/ function(module, exports) {
 
   module.exports = require("react-cookie");
 
 /***/ },
-/* 35 */
+/* 32 */
 /***/ function(module, exports) {
 
   module.exports = require("react-dom");
+
+/***/ },
+/* 33 */
+/***/ function(module, exports) {
+
+  module.exports = require("react-material-icons/icons/navigation/menu");
+
+/***/ },
+/* 34 */
+/***/ function(module, exports) {
+
+  module.exports = require("react-responsive");
 
 /***/ }
 /******/ ]);
