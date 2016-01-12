@@ -65,7 +65,7 @@ module.exports =
 
   var _react2 = _interopRequireDefault(_react);
 
-  var _reactDom = __webpack_require__(31);
+  var _reactDom = __webpack_require__(33);
 
   var _reactDom2 = _interopRequireDefault(_reactDom);
 
@@ -243,19 +243,19 @@ module.exports =
 
   function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-  var _materialUiLibStylesColors = __webpack_require__(24);
+  var _materialUiLibStylesColors = __webpack_require__(26);
 
   var _materialUiLibStylesColors2 = _interopRequireDefault(_materialUiLibStylesColors);
 
-  var _materialUiLibUtilsColorManipulator = __webpack_require__(29);
+  var _materialUiLibUtilsColorManipulator = __webpack_require__(31);
 
   var _materialUiLibUtilsColorManipulator2 = _interopRequireDefault(_materialUiLibUtilsColorManipulator);
 
-  var _materialUiLibStylesSpacing = __webpack_require__(25);
+  var _materialUiLibStylesSpacing = __webpack_require__(27);
 
   var _materialUiLibStylesSpacing2 = _interopRequireDefault(_materialUiLibStylesSpacing);
 
-  var _materialUiLibStylesZIndex = __webpack_require__(27);
+  var _materialUiLibStylesZIndex = __webpack_require__(29);
 
   var _materialUiLibStylesZIndex2 = _interopRequireDefault(_materialUiLibStylesZIndex);
 
@@ -311,7 +311,7 @@ module.exports =
 
   var _react2 = _interopRequireDefault(_react);
 
-  var _materialUiLibStylesThemeManager = __webpack_require__(26);
+  var _materialUiLibStylesThemeManager = __webpack_require__(28);
 
   var _materialUiLibStylesThemeManager2 = _interopRequireDefault(_materialUiLibStylesThemeManager);
 
@@ -433,9 +433,10 @@ module.exports =
             lineHeight: '0px'
           }
         };
+        console.log(("development"));
         return _react2['default'].createElement(
           'a',
-          { style: styles.loginButton, href: 'https://noobskins-2.herokuapp.com/api/auth/steam?returnUrl=https://noobskins.github.io' },
+          { style: styles.loginButton, href:  true ? 'https://noobskins-2.herokuapp.com/api/auth/steam?returnUrl=http://localhost:3000' : 'https://noobskins-2.herokuapp.com/api/auth/steam?returnUrl=https://noobskins.github.io' },
           _react2['default'].createElement(_materialUiLibRaisedButton2['default'], { label: 'Steam login', secondary: true, labelPosition: 'after' })
         );
       }
@@ -472,7 +473,7 @@ module.exports =
 
   var _react2 = _interopRequireDefault(_react);
 
-  var _reactResponsive = __webpack_require__(33);
+  var _reactResponsive = __webpack_require__(35);
 
   var _reactResponsive2 = _interopRequireDefault(_reactResponsive);
 
@@ -484,7 +485,7 @@ module.exports =
 
   /* Other files and images */
 
-  var _reactMaterialIconsIconsNavigationMenu = __webpack_require__(32);
+  var _reactMaterialIconsIconsNavigationMenu = __webpack_require__(34);
 
   var _reactMaterialIconsIconsNavigationMenu2 = _interopRequireDefault(_reactMaterialIconsIconsNavigationMenu);
 
@@ -621,13 +622,21 @@ module.exports =
 
   var _materialUiLibAvatar2 = _interopRequireDefault(_materialUiLibAvatar);
 
-  var _materialUiLibSvgIconsFileFolder = __webpack_require__(28);
+  var _materialUiLibSvgIconsFileFolder = __webpack_require__(30);
 
   var _materialUiLibSvgIconsFileFolder2 = _interopRequireDefault(_materialUiLibSvgIconsFileFolder);
 
-  var _reactCookie = __webpack_require__(30);
+  var _reactCookie = __webpack_require__(32);
 
   var _reactCookie2 = _interopRequireDefault(_reactCookie);
+
+  var _materialUiLibMenusMenu = __webpack_require__(24);
+
+  var _materialUiLibMenusMenu2 = _interopRequireDefault(_materialUiLibMenusMenu);
+
+  var _materialUiLibMenusMenuItem = __webpack_require__(25);
+
+  var _materialUiLibMenusMenuItem2 = _interopRequireDefault(_materialUiLibMenusMenuItem);
 
   /* Css */
 
@@ -658,7 +667,8 @@ module.exports =
       _get(Object.getPrototypeOf(Navigation.prototype), 'constructor', this).call(this, props);
       this.state = {
         userInformationRequested: false,
-        userInformationReceived: false
+        userInformationReceived: false,
+        menuOpen: false
       };
     }
 
@@ -689,7 +699,7 @@ module.exports =
               self.setState({
                 userInformationRequested: true,
                 userInformationReceived: true
-              }).bind(self);
+              });
             }
 
           });
@@ -722,6 +732,13 @@ module.exports =
           }
       }
     }, {
+      key: 'avatarClick',
+      value: function avatarClick(a) {
+        this.setState({
+          menuOpen: !this.state.menuOpen
+        });
+      }
+    }, {
       key: 'render',
       value: function render() {
         var _this = this;
@@ -729,8 +746,16 @@ module.exports =
         var styles = {
           avatar: {
             marginTop: '13px'
+          },
+          avatarMenu: {
+            float: 'right',
+            position: 'absolute',
+            top: '64px',
+            right: '0px'
           }
         };
+
+        var boundClick = this.avatarClick.bind(this);
 
         return _react2['default'].createElement(
           'div',
@@ -755,9 +780,18 @@ module.exports =
                   (function () {
                     if (_this.state.userInformationRequested) {
                       if (_this.state.userInformationReceived) {
-                        return _react2['default'].createElement(_materialUiLibAvatar2['default'], { style: styles.avatar, icon: _react2['default'].createElement(_materialUiLibSvgIconsFileFolder2['default'], null) });
+                        return _react2['default'].createElement(
+                          'div',
+                          null,
+                          _react2['default'].createElement(_materialUiLibAvatar2['default'], { onClick: boundClick, style: styles.avatar, icon: _react2['default'].createElement(_materialUiLibSvgIconsFileFolder2['default'], null), children: _this.state.menuOpen ? _react2['default'].createElement(
+                              _materialUiLibMenusMenu2['default'],
+                              { desktop: true, style: styles.avatarMenu },
+                              _react2['default'].createElement(_materialUiLibMenusMenuItem2['default'], { primaryText: 'Profile' }),
+                              _react2['default'].createElement(_materialUiLibMenusMenuItem2['default'], { primaryText: 'Logout' }),
+                              _react2['default'].createElement(_materialUiLibMenusMenuItem2['default'], { primaryText: 'A random long text' })
+                            ) : null })
+                        );
                       } else {
-                        console.log('fadsfsdsdfsfd');
                         return _react2['default'].createElement(_LoginButton2['default'], null);
                       }
                     }
@@ -1327,58 +1361,70 @@ module.exports =
 /* 24 */
 /***/ function(module, exports) {
 
-  module.exports = require("material-ui/lib/styles/colors");
+  module.exports = require("material-ui/lib/menus/menu");
 
 /***/ },
 /* 25 */
 /***/ function(module, exports) {
 
-  module.exports = require("material-ui/lib/styles/spacing");
+  module.exports = require("material-ui/lib/menus/menu-item");
 
 /***/ },
 /* 26 */
 /***/ function(module, exports) {
 
-  module.exports = require("material-ui/lib/styles/theme-manager");
+  module.exports = require("material-ui/lib/styles/colors");
 
 /***/ },
 /* 27 */
 /***/ function(module, exports) {
 
-  module.exports = require("material-ui/lib/styles/zIndex");
+  module.exports = require("material-ui/lib/styles/spacing");
 
 /***/ },
 /* 28 */
 /***/ function(module, exports) {
 
-  module.exports = require("material-ui/lib/svg-icons/file/folder");
+  module.exports = require("material-ui/lib/styles/theme-manager");
 
 /***/ },
 /* 29 */
 /***/ function(module, exports) {
 
-  module.exports = require("material-ui/lib/utils/color-manipulator");
+  module.exports = require("material-ui/lib/styles/zIndex");
 
 /***/ },
 /* 30 */
 /***/ function(module, exports) {
 
-  module.exports = require("react-cookie");
+  module.exports = require("material-ui/lib/svg-icons/file/folder");
 
 /***/ },
 /* 31 */
 /***/ function(module, exports) {
 
-  module.exports = require("react-dom");
+  module.exports = require("material-ui/lib/utils/color-manipulator");
 
 /***/ },
 /* 32 */
 /***/ function(module, exports) {
 
-  module.exports = require("react-material-icons/icons/navigation/menu");
+  module.exports = require("react-cookie");
 
 /***/ },
 /* 33 */
+/***/ function(module, exports) {
+
+  module.exports = require("react-dom");
+
+/***/ },
+/* 34 */
+/***/ function(module, exports) {
+
+  module.exports = require("react-material-icons/icons/navigation/menu");
+
+/***/ },
+/* 35 */
 /***/ function(module, exports) {
 
   module.exports = require("react-responsive");
