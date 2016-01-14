@@ -873,11 +873,11 @@ module.exports =
       key: 'getUser',
       value: function getUser() {
         var self = this;
-        // const apiToken = location.search.split('token=')[1];
+        var apiToken = location.search.split('token=')[1];
 
-        // if (apiToken) {
-        //   cookie.save('apiToken', apiToken);
-        // }
+        if (apiToken) {
+          _reactCookie2['default'].save('apiToken', apiToken);
+        }
 
         var apiCookie = _reactCookie2['default'].load('apiToken');
         console.log(apiCookie);
