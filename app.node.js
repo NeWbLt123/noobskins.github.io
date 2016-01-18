@@ -69,13 +69,13 @@ module.exports =
 
   var _reactDom2 = _interopRequireDefault(_reactDom);
 
-  var _fbjsLibExecutionEnvironment = __webpack_require__(4);
+  var _fbjsLibExecutionEnvironment = __webpack_require__(6);
 
   var _libLocation = __webpack_require__(12);
 
   var _libLocation2 = _interopRequireDefault(_libLocation);
 
-  var _componentsLayout = __webpack_require__(7);
+  var _componentsLayout = __webpack_require__(8);
 
   var _componentsLayout2 = _interopRequireDefault(_componentsLayout);
 
@@ -173,6 +173,72 @@ module.exports =
 /* 3 */
 /***/ function(module, exports) {
 
+  module.exports = require("react-cookie");
+
+/***/ },
+/* 4 */
+/***/ function(module, exports, __webpack_require__) {
+
+  /* React components */
+  'use strict';
+
+  Object.defineProperty(exports, '__esModule', {
+    value: true
+  });
+
+  var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+  var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+  function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+  var _react = __webpack_require__(1);
+
+  var _react2 = _interopRequireDefault(_react);
+
+  var _materialUiLibRaisedButton = __webpack_require__(2);
+
+  var _materialUiLibRaisedButton2 = _interopRequireDefault(_materialUiLibRaisedButton);
+
+  var LoginButton = (function (_Component) {
+    _inherits(LoginButton, _Component);
+
+    function LoginButton() {
+      _classCallCheck(this, LoginButton);
+
+      _get(Object.getPrototypeOf(LoginButton.prototype), 'constructor', this).apply(this, arguments);
+    }
+
+    _createClass(LoginButton, [{
+      key: 'render',
+      value: function render() {
+        var styles = {
+          loginButton: {
+            lineHeight: '0px'
+          }
+        };
+        return _react2['default'].createElement(
+          'a',
+          { style: styles.loginButton, href:  false ? 'http://localhost:8080/api/auth/steam?returnUrl=http://localhost:3000' : 'https://noobskins-2.herokuapp.com/api/auth/steam?returnUrl=https://noobskins.github.io' },
+          _react2['default'].createElement(_materialUiLibRaisedButton2['default'], { label: this.props.overrideText || "Steam login", primary: this.props.isPrimary, secondary: !this.props.isPrimary, labelPosition: 'after' })
+        );
+      }
+    }]);
+
+    return LoginButton;
+  })(_react.Component);
+
+  exports['default'] = LoginButton;
+  module.exports = exports['default'];
+
+/***/ },
+/* 5 */
+/***/ function(module, exports) {
+
   /*
   	MIT License http://www.opensource.org/licenses/mit-license.php
   	Author Tobias Koppers @sokra
@@ -226,19 +292,13 @@ module.exports =
 
 
 /***/ },
-/* 4 */
+/* 6 */
 /***/ function(module, exports) {
 
   module.exports = require("fbjs/lib/ExecutionEnvironment");
 
 /***/ },
-/* 5 */
-/***/ function(module, exports) {
-
-  module.exports = require("react-cookie");
-
-/***/ },
-/* 6 */
+/* 7 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -270,10 +330,10 @@ module.exports =
     zIndex: _materialUiLibStylesZIndex2['default'],
     fontFamily: 'Roboto, sans-serif',
     palette: {
-      primary1Color: _materialUiLibStylesColors2['default'].indigo700,
+      primary1Color: _materialUiLibStylesColors2['default'].indigo900,
       primary2Color: _materialUiLibStylesColors2['default'].purple700,
       primary3Color: _materialUiLibStylesColors2['default'].lightBlack,
-      accent1Color: _materialUiLibStylesColors2['default'].amber300,
+      accent1Color: _materialUiLibStylesColors2['default'].deepOrange400,
       accent2Color: _materialUiLibStylesColors2['default'].grey100,
       accent3Color: _materialUiLibStylesColors2['default'].grey500,
       textColor: _materialUiLibStylesColors2['default'].darkBlack,
@@ -287,7 +347,7 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 7 */
+/* 8 */
 /***/ function(module, exports, __webpack_require__) {
 
   /**
@@ -321,13 +381,17 @@ module.exports =
 
   var _materialUiLibStylesThemeManager2 = _interopRequireDefault(_materialUiLibStylesThemeManager);
 
+  var _reactCookie = __webpack_require__(3);
+
+  var _reactCookie2 = _interopRequireDefault(_reactCookie);
+
   /* Css */
 
   __webpack_require__(20);
 
   /* Other files and images */
 
-  var _CustomTheme = __webpack_require__(6);
+  var _CustomTheme = __webpack_require__(7);
 
   var _CustomTheme2 = _interopRequireDefault(_CustomTheme);
 
@@ -339,13 +403,21 @@ module.exports =
 
   var _Navigation2 = _interopRequireDefault(_Navigation);
 
+  var _NavigationLoginButton = __webpack_require__(4);
+
+  var _NavigationLoginButton2 = _interopRequireDefault(_NavigationLoginButton);
+
   var Layout = (function (_Component) {
     _inherits(Layout, _Component);
 
-    function Layout() {
+    function Layout(props) {
       _classCallCheck(this, Layout);
 
-      _get(Object.getPrototypeOf(Layout.prototype), 'constructor', this).apply(this, arguments);
+      _get(Object.getPrototypeOf(Layout.prototype), 'constructor', this).call(this, props);
+      this.state = {
+        userInformationRequested: false,
+        userInformationReceived: false
+      };
     }
 
     _createClass(Layout, [{
@@ -356,8 +428,59 @@ module.exports =
         };
       }
     }, {
+      key: 'componentDidMount',
+      value: function componentDidMount() {
+        this.getUser();
+      }
+    }, {
+      key: 'getUser',
+      value: function getUser() {
+        var self = this;
+        var apiToken = location.search.split('token=')[1];
+
+        if (apiToken) {
+          _reactCookie2['default'].save('apiToken', apiToken);
+        }
+
+        var apiCookie = _reactCookie2['default'].load('apiToken');
+        if (apiCookie) {
+          $.ajax({
+            url:  false ? 'http://localhost:8080/api/users/my' : 'https://noobskins-2.herokuapp.com/api/users/my',
+            type: 'GET',
+            headers: {
+              'x-access-token': apiCookie
+            }, success: (function (data) {
+              self.setState({
+                userInformationRequested: true
+              });
+              if (data.success) {
+                self.setState({
+                  userInformationReceived: true,
+                  credits: data.response.user.currency,
+                  avatar: data.response.steamInfo.avatar,
+                  name: data.response.steamInfo.name
+                });
+              }
+            }).bind(this)
+
+          });
+        } else {
+          self.setState({
+            userInformationRequested: true
+          });
+        }
+      }
+    }, {
       key: 'render',
       value: function render() {
+        var _this = this;
+
+        var styles = {
+          loginButtonContainer: {
+            marginTop: '10px'
+          }
+        };
+
         return _react2['default'].createElement(
           'div',
           { className: 'Layout' },
@@ -366,8 +489,47 @@ module.exports =
             return _react2['default'].createElement(
               'div',
               null,
-              _react2['default'].createElement(_Navigation2['default'], null),
-              _react2['default'].createElement('div', { className: 'fullBanner' })
+              _react2['default'].createElement(_Navigation2['default'], {
+                avatar: _this.state.avatar,
+                credits: _this.state.credits,
+                name: _this.state.name,
+                userInformationRequested: _this.state.userInformationRequested,
+                userInformationReceived: _this.state.userInformationReceived }),
+              _react2['default'].createElement(
+                'div',
+                { className: 'fullBanner' },
+                _react2['default'].createElement(
+                  'h1',
+                  { align: 'center' },
+                  'The easy way to purchase and sell CS:GO skins'
+                ),
+                _react2['default'].createElement(
+                  'div',
+                  { style: styles.loginButtonContainer },
+                  (function () {
+                    if (_this.state.userInformationRequested) {
+                      if (_this.state.userInformationReceived) {
+                        return _react2['default'].createElement(
+                          'div',
+                          null,
+                          _react2['default'].createElement(
+                            'span',
+                            { style: { marginRight: '10px' } },
+                            _react2['default'].createElement(_NavigationLoginButton2['default'], { isPrimary: true, overrideText: 'Purchase an item' })
+                          ),
+                          _react2['default'].createElement(
+                            'span',
+                            null,
+                            _react2['default'].createElement(_NavigationLoginButton2['default'], { isPrimary: true, overrideText: 'Sell an item' })
+                          )
+                        );
+                      } else {
+                        return _react2['default'].createElement(_NavigationLoginButton2['default'], { isPrimary: true, overrideText: 'Log in now with steam' });
+                      }
+                    }
+                  })()
+                )
+              )
             );
           })(),
           this.props.children
@@ -391,66 +553,6 @@ module.exports =
   })(_react.Component);
 
   exports['default'] = Layout;
-  module.exports = exports['default'];
-
-/***/ },
-/* 8 */
-/***/ function(module, exports, __webpack_require__) {
-
-  /* React components */
-  'use strict';
-
-  Object.defineProperty(exports, '__esModule', {
-    value: true
-  });
-
-  var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
-  var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
-
-  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-  function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
-
-  function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-  var _react = __webpack_require__(1);
-
-  var _react2 = _interopRequireDefault(_react);
-
-  var _materialUiLibRaisedButton = __webpack_require__(2);
-
-  var _materialUiLibRaisedButton2 = _interopRequireDefault(_materialUiLibRaisedButton);
-
-  var LoginButton = (function (_Component) {
-    _inherits(LoginButton, _Component);
-
-    function LoginButton() {
-      _classCallCheck(this, LoginButton);
-
-      _get(Object.getPrototypeOf(LoginButton.prototype), 'constructor', this).apply(this, arguments);
-    }
-
-    _createClass(LoginButton, [{
-      key: 'render',
-      value: function render() {
-        var styles = {
-          loginButton: {
-            lineHeight: '0px'
-          }
-        };
-        return _react2['default'].createElement(
-          'a',
-          { style: styles.loginButton, href:  false ? 'http://localhost:8080/api/auth/steam?returnUrl=http://localhost:3000' : 'https://noobskins-2.herokuapp.com/api/auth/steam?returnUrl=https://noobskins.github.io' },
-          _react2['default'].createElement(_materialUiLibRaisedButton2['default'], { label: 'Steam login', secondary: true, labelPosition: 'after' })
-        );
-      }
-    }]);
-
-    return LoginButton;
-  })(_react.Component);
-
-  exports['default'] = LoginButton;
   module.exports = exports['default'];
 
 /***/ },
@@ -643,7 +745,7 @@ module.exports =
 
   var _materialUiLibFlatButton2 = _interopRequireDefault(_materialUiLibFlatButton);
 
-  var _reactCookie = __webpack_require__(5);
+  var _reactCookie = __webpack_require__(3);
 
   var _reactCookie2 = _interopRequireDefault(_reactCookie);
 
@@ -836,7 +938,7 @@ module.exports =
 
   var _react2 = _interopRequireDefault(_react);
 
-  var _reactCookie = __webpack_require__(5);
+  var _reactCookie = __webpack_require__(3);
 
   var _reactCookie2 = _interopRequireDefault(_reactCookie);
 
@@ -860,7 +962,7 @@ module.exports =
 
   /* Children components */
 
-  var _LoginButton = __webpack_require__(8);
+  var _LoginButton = __webpack_require__(4);
 
   var _LoginButton2 = _interopRequireDefault(_LoginButton);
 
@@ -875,67 +977,16 @@ module.exports =
   var Navigation = (function (_Component) {
     _inherits(Navigation, _Component);
 
-    function Navigation(props) {
+    function Navigation() {
       _classCallCheck(this, Navigation);
 
-      _get(Object.getPrototypeOf(Navigation.prototype), 'constructor', this).call(this, props);
-      this.state = {
-        userInformationRequested: false,
-        userInformationReceived: false,
-        menuOpen: false
-      };
+      _get(Object.getPrototypeOf(Navigation.prototype), 'constructor', this).apply(this, arguments);
     }
 
     _createClass(Navigation, [{
-      key: 'componentDidMount',
-      value: function componentDidMount() {
-        this.getUser();
-      }
-    }, {
-      key: 'getUser',
-      value: function getUser() {
-        var self = this;
-        var apiToken = location.search.split('token=')[1];
-
-        if (apiToken) {
-          _reactCookie2['default'].save('apiToken', apiToken);
-        }
-
-        var apiCookie = _reactCookie2['default'].load('apiToken');
-        console.log(apiCookie);
-        if (apiCookie) {
-          $.ajax({
-            url:  false ? 'http://localhost:8080/api/users/my' : 'https://noobskins-2.herokuapp.com/api/users/my',
-            type: 'GET',
-            headers: {
-              'x-access-token': apiCookie
-            }, success: (function (data) {
-              self.setState({
-                userInformationRequested: true
-              });
-              if (data.success) {
-                self.setState({
-                  userInformationReceived: true,
-                  credits: data.response.user.currency,
-                  avatar: data.response.steamInfo.avatar,
-                  name: data.response.steamInfo.name
-                });
-              }
-            }).bind(this)
-
-          });
-        } else {
-          self.setState({
-            userInformationRequested: true
-          });
-        }
-      }
-    }, {
       key: 'render',
       value: function render() {
         var _this = this;
-
-        // var boundClick = this.avatarClick.bind(this);
 
         return _react2['default'].createElement(
           'div',
@@ -958,11 +1009,14 @@ module.exports =
                   'div',
                   { className: 'right-nav' },
                   (function () {
-                    if (_this.state.userInformationRequested) {
-                      if (_this.state.userInformationReceived) {
-                        return _react2['default'].createElement(_MenuPopoverMenu2['default'], { avatar: _this.state.avatar, credits: _this.state.credits, name: _this.state.name });
+                    if (_this.props.userInformationRequested) {
+                      if (_this.props.userInformationReceived) {
+                        return _react2['default'].createElement(_MenuPopoverMenu2['default'], {
+                          avatar: _this.props.avatar,
+                          credits: _this.props.credits,
+                          name: _this.props.name });
                       } else {
-                        return _react2['default'].createElement(_LoginButton2['default'], null);
+                        return _react2['default'].createElement(_LoginButton2['default'], { isPrimary: false });
                       }
                     }
                   })()
@@ -999,7 +1053,7 @@ module.exports =
 
   function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-  var _fbjsLibExecutionEnvironment = __webpack_require__(4);
+  var _fbjsLibExecutionEnvironment = __webpack_require__(6);
 
   var _historyLibCreateBrowserHistory = __webpack_require__(23);
 
@@ -1479,12 +1533,12 @@ module.exports =
 /* 20 */
 /***/ function(module, exports, __webpack_require__) {
 
-  exports = module.exports = __webpack_require__(3)();
+  exports = module.exports = __webpack_require__(5)();
   // imports
 
 
   // module
-  exports.push([module.id, "/**\r\n * React Static Boilerplate\r\n * https://github.com/koistya/react-static-boilerplate\r\n * Copyright (c) Konstantin Tarkus (@koistya) | MIT license\r\n */\r\n\r\n/**\r\n * React Static Boilerplate\r\n * https://github.com/koistya/react-static-boilerplate\r\n * Copyright (c) Konstantin Tarkus (@koistya) | MIT license\r\n */\r\n\r\n/*\r\n * Scaffolding\r\n * -------------------------------------------------------------------------- */\r\n\r\n/*\r\n * Typography\r\n * -------------------------------------------------------------------------- */\r\n\r\n/*\r\n * Media queries breakpoints\r\n * -------------------------------------------------------------------------- */\r\n\r\nhtml, body {\r\n  margin: 0;\r\n  padding: 0;\r\n  background-color: #f7f7f7;\r\n  color: #333;\r\n  font-family: 'Roboto','Helvetica',sans-serif;\r\n}\r\n\r\n.Layout {\r\n  margin: 0 auto;\r\n  width: 100%;\r\n}\r\n\r\n.fullBanner {\r\n    width: 100%;\r\n    height: 200px;\r\n    background-color: #303f9f;\r\n    margin-top: 3px;\r\n}\r\n", ""]);
+  exports.push([module.id, "/**\r\n * React Static Boilerplate\r\n * https://github.com/koistya/react-static-boilerplate\r\n * Copyright (c) Konstantin Tarkus (@koistya) | MIT license\r\n */\r\n\r\n/**\r\n * React Static Boilerplate\r\n * https://github.com/koistya/react-static-boilerplate\r\n * Copyright (c) Konstantin Tarkus (@koistya) | MIT license\r\n */\r\n\r\n/*\r\n * Scaffolding\r\n * -------------------------------------------------------------------------- */\r\n/* $primary: #303f9f; */\r\n\r\n\r\n/*\r\n * Typography\r\n * -------------------------------------------------------------------------- */\r\n\r\n/*\r\n * Media queries breakpoints\r\n * -------------------------------------------------------------------------- */\r\n\r\nhtml, body {\r\n  margin: 0;\r\n  padding: 0;\r\n  background-color: #f7f7f7;\r\n  color: #333;\r\n  font-family: 'Roboto','Helvetica',sans-serif;\r\n}\r\n\r\n.Layout {\r\n  margin: 0 auto;\r\n  width: 100%;\r\n}\r\n\r\n.fullBanner {\r\n    width: 100%;\r\n    background-color: #1a237e;\r\n    margin-top: 3px;\r\n    padding: 50px 0px 50px 0px;\r\n    text-align: center;\r\n}\r\n\r\n.fullBanner h1 {\r\n  color: white;\r\n  margin: 0;\r\n  font-size: 50px;\r\n  font-weight: normal;\r\n}\r\n", ""]);
 
   // exports
 
@@ -1493,12 +1547,12 @@ module.exports =
 /* 21 */
 /***/ function(module, exports, __webpack_require__) {
 
-  exports = module.exports = __webpack_require__(3)();
+  exports = module.exports = __webpack_require__(5)();
   // imports
 
 
   // module
-  exports.push([module.id, "/**\r\n * React Static Boilerplate\r\n * https://github.com/koistya/react-static-boilerplate\r\n * Copyright (c) Konstantin Tarkus (@koistya) | MIT license\r\n */\r\n\r\n/**\r\n * React Static Boilerplate\r\n * https://github.com/koistya/react-static-boilerplate\r\n * Copyright (c) Konstantin Tarkus (@koistya) | MIT license\r\n */\r\n\r\n/*\r\n * Scaffolding\r\n * -------------------------------------------------------------------------- */\r\n\r\n/*\r\n * Typography\r\n * -------------------------------------------------------------------------- */\r\n\r\n/*\r\n * Media queries breakpoints\r\n * -------------------------------------------------------------------------- */\r\n\r\n.Navigation {\r\n  display: -webkit-box;\r\n  display: -webkit-flex;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -webkit-box-orient: horizontal;\r\n  -webkit-box-direction: normal;\r\n  -webkit-flex-direction: row;\r\n      -ms-flex-direction: row;\r\n          flex-direction: row;\r\n  margin: 2em 0 5em 0;\r\n  list-style: none;\r\n  -webkit-box-pack: end;\r\n  -webkit-justify-content: flex-end;\r\n      -ms-flex-pack: end;\r\n          justify-content: flex-end;\r\n}\r\n\r\n.Navigation-item {\r\n  padding: 0 2em;\r\n}\r\n\r\n.Navigation-link {\r\n  padding: 0.5em 1em;\r\n  color: #21ce99;\r\n  text-decoration: none;\r\n  text-transform: uppercase;\r\n  cursor: pointer;\r\n}\r\n\r\n.Navigation-link:hover {\r\n  border-bottom: 3px solid #21ce99;\r\n  color: #333;\r\n}\r\n\r\nnav {\r\n    background-color: #fff;\r\n    font-weight: 300;\r\n    width: 100%;\r\n    z-index: 1001;\r\n}\r\n\r\nnav ul {\r\n    margin: 0;\r\n}\r\n\r\nnav ul li {\r\n    -webkit-transition: background-color .3s;\r\n    -o-transition: background-color .3s;\r\n    transition: background-color .3s;\r\n    float: left;\r\n    padding: 0;\r\n}\r\n\r\nnav a, nav ul a {\r\n    color: #212121;\r\n}\r\n\r\nnav ul a {\r\n    font-size: 1rem;\r\n    display: inline-block;\r\n    padding: 0 15px;\r\n    box-sizing: border-box;\r\n    -moz-box-sizing: border-box;\r\n    -webkit-box-sizing: border-box;\r\n}\r\n\r\nnav ul a:hover {\r\n    border-bottom: 3px solid #ffd54f;\r\n}\r\n\r\nul li {\r\n    list-style-type: none;\r\n}\r\n\r\na {\r\n    text-decoration: none;\r\n}\r\n\r\n.navbar-fixed {\r\n    height: 64px;\r\n    position: relative;\r\n}\r\n\r\n.navbar-fixed nav {\r\n    position: fixed;\r\n    height: 64px;\r\n    line-height: 64px;\r\n}\r\n\r\n.nav-wrapper {\r\n    padding: 0 15px;\r\n    position: relative;\r\n    height: 100%;\r\n}\r\n\r\n.brand-logo {\r\n    position: absolute;\r\n    color: #fff;\r\n    display: inline-block;\r\n    font-size: 2.1rem;\r\n    padding: 0;\r\n}\r\n\r\n.right-nav {\r\n    float: right;\r\n    margin-left: 15px;\r\n}\r\n\r\n.right {\r\n    float: right !important;\r\n}\r\n\r\nnav .login {\r\n    margin-bottom: 0;\r\n}\r\n", ""]);
+  exports.push([module.id, "/**\r\n * React Static Boilerplate\r\n * https://github.com/koistya/react-static-boilerplate\r\n * Copyright (c) Konstantin Tarkus (@koistya) | MIT license\r\n */\r\n\r\n/**\r\n * React Static Boilerplate\r\n * https://github.com/koistya/react-static-boilerplate\r\n * Copyright (c) Konstantin Tarkus (@koistya) | MIT license\r\n */\r\n\r\n/*\r\n * Scaffolding\r\n * -------------------------------------------------------------------------- */\r\n/* $primary: #303f9f; */\r\n\r\n\r\n/*\r\n * Typography\r\n * -------------------------------------------------------------------------- */\r\n\r\n/*\r\n * Media queries breakpoints\r\n * -------------------------------------------------------------------------- */\r\n\r\n.Navigation {\r\n  display: -webkit-box;\r\n  display: -webkit-flex;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -webkit-box-orient: horizontal;\r\n  -webkit-box-direction: normal;\r\n  -webkit-flex-direction: row;\r\n      -ms-flex-direction: row;\r\n          flex-direction: row;\r\n  margin: 2em 0 5em 0;\r\n  list-style: none;\r\n  -webkit-box-pack: end;\r\n  -webkit-justify-content: flex-end;\r\n      -ms-flex-pack: end;\r\n          justify-content: flex-end;\r\n}\r\n\r\n.Navigation-item {\r\n  padding: 0 2em;\r\n}\r\n\r\n.Navigation-link {\r\n  padding: 0.5em 1em;\r\n  color: #21ce99;\r\n  text-decoration: none;\r\n  text-transform: uppercase;\r\n  cursor: pointer;\r\n}\r\n\r\n.Navigation-link:hover {\r\n  border-bottom: 3px solid #21ce99;\r\n  color: #333;\r\n}\r\n\r\nnav {\r\n    background-color: #fff;\r\n    font-weight: 300;\r\n    width: 100%;\r\n    z-index: 1001;\r\n}\r\n\r\nnav ul {\r\n    margin: 0;\r\n}\r\n\r\nnav ul li {\r\n    -webkit-transition: background-color .3s;\r\n    -o-transition: background-color .3s;\r\n    transition: background-color .3s;\r\n    float: left;\r\n    padding: 0;\r\n}\r\n\r\nnav a, nav ul a {\r\n    color: #212121;\r\n}\r\n\r\nnav ul a {\r\n    font-size: 1rem;\r\n    display: inline-block;\r\n    padding: 0 15px;\r\n    box-sizing: border-box;\r\n    -moz-box-sizing: border-box;\r\n    -webkit-box-sizing: border-box;\r\n}\r\n\r\nnav ul a:hover {\r\n    border-bottom: 3px solid #ff7043;\r\n}\r\n\r\nul li {\r\n    list-style-type: none;\r\n}\r\n\r\na {\r\n    text-decoration: none;\r\n}\r\n\r\n.navbar-fixed {\r\n    height: 64px;\r\n    position: relative;\r\n}\r\n\r\n.navbar-fixed nav {\r\n    position: fixed;\r\n    height: 64px;\r\n    line-height: 64px;\r\n}\r\n\r\n.nav-wrapper {\r\n    padding: 0 15px;\r\n    position: relative;\r\n    height: 100%;\r\n}\r\n\r\n.brand-logo {\r\n    position: absolute;\r\n    color: #fff;\r\n    display: inline-block;\r\n    font-size: 2.1rem;\r\n    padding: 0;\r\n}\r\n\r\n.right-nav {\r\n    float: right;\r\n    margin-left: 15px;\r\n}\r\n\r\n.right {\r\n    float: right !important;\r\n}\r\n\r\nnav .login {\r\n    margin-bottom: 0;\r\n}\r\n", ""]);
 
   // exports
 
