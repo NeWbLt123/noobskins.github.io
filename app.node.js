@@ -223,7 +223,7 @@ module.exports =
         };
         return _react2['default'].createElement(
           'a',
-          { style: styles.loginButton, href:  false ? 'http://localhost:8080/api/auth/steam?returnUrl=http://localhost:3000' : 'https://noobskins-2.herokuapp.com/api/auth/steam?returnUrl=https://noobskins.github.io' },
+          { style: styles.loginButton, href:  false ? 'http://localhost:8080/api/auth/steam?returnUrl=http://localhost:3000' : 'http://api.noobskins.com/api/auth/steam?returnUrl=http://www.noobskins.com' },
           _react2['default'].createElement(_materialUiLibRaisedButton2['default'], { label: this.props.overrideText || "Steam login", primary: this.props.isPrimary, secondary: !this.props.isPrimary, labelPosition: 'after' })
         );
       }
@@ -445,7 +445,7 @@ module.exports =
         var apiCookie = _reactCookie2['default'].load('apiToken');
         if (apiCookie) {
           $.ajax({
-            url:  false ? 'http://localhost:8080/api/users/my' : 'https://noobskins-2.herokuapp.com/api/users/my',
+            url:  false ? 'http://localhost:8080/api/users/my' : 'http://api.noobskins.com/api/users/my',
             type: 'GET',
             headers: {
               'x-access-token': apiCookie
