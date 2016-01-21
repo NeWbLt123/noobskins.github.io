@@ -69,7 +69,7 @@ module.exports =
 
   var _reactDom2 = _interopRequireDefault(_reactDom);
 
-  var _fbjsLibExecutionEnvironment = __webpack_require__(6);
+  var _fbjsLibExecutionEnvironment = __webpack_require__(5);
 
   var _libLocation = __webpack_require__(12);
 
@@ -171,12 +171,6 @@ module.exports =
 
 /***/ },
 /* 3 */
-/***/ function(module, exports) {
-
-  module.exports = require("react-cookie");
-
-/***/ },
-/* 4 */
 /***/ function(module, exports, __webpack_require__) {
 
   /* React components */
@@ -236,7 +230,7 @@ module.exports =
   module.exports = exports['default'];
 
 /***/ },
-/* 5 */
+/* 4 */
 /***/ function(module, exports) {
 
   /*
@@ -292,10 +286,16 @@ module.exports =
 
 
 /***/ },
-/* 6 */
+/* 5 */
 /***/ function(module, exports) {
 
   module.exports = require("fbjs/lib/ExecutionEnvironment");
+
+/***/ },
+/* 6 */
+/***/ function(module, exports) {
+
+  module.exports = require("react-cookie");
 
 /***/ },
 /* 7 */
@@ -381,9 +381,7 @@ module.exports =
 
   var _materialUiLibStylesThemeManager2 = _interopRequireDefault(_materialUiLibStylesThemeManager);
 
-  var _reactCookie = __webpack_require__(3);
-
-  var _reactCookie2 = _interopRequireDefault(_reactCookie);
+  // import cookie from 'react-cookie';
 
   /* Css */
 
@@ -403,7 +401,7 @@ module.exports =
 
   var _Navigation2 = _interopRequireDefault(_Navigation);
 
-  var _NavigationLoginButton = __webpack_require__(4);
+  var _NavigationLoginButton = __webpack_require__(3);
 
   var _NavigationLoginButton2 = _interopRequireDefault(_NavigationLoginButton);
 
@@ -436,13 +434,13 @@ module.exports =
       key: 'getUser',
       value: function getUser() {
         var self = this;
-        var apiToken = location.search.split('token=')[1];
+        // const apiToken = location.search.split('token=')[1];
 
-        if (apiToken) {
-          _reactCookie2['default'].save('apiToken', apiToken);
-        }
+        // if (apiToken) {
+        //   cookie.save('apiToken', apiToken);
+        // }
 
-        var apiCookie = _reactCookie2['default'].load('apiToken');
+        var apiCookie = $.cookie('apiToken');
         if (apiCookie) {
           $.ajax({
             url:  false ? 'http://localhost:8080/api/users/my' : 'http://api.noobskins.com/api/users/my',
@@ -485,6 +483,7 @@ module.exports =
           'div',
           { className: 'Layout' },
           _react2['default'].createElement('script', { src: 'https://code.jquery.com/jquery-2.1.4.min.js', type: 'text/javascript' }),
+          _react2['default'].createElement('script', { src: 'https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js', type: 'text/javascript' }),
           (function () {
             return _react2['default'].createElement(
               'div',
@@ -745,7 +744,7 @@ module.exports =
 
   var _materialUiLibFlatButton2 = _interopRequireDefault(_materialUiLibFlatButton);
 
-  var _reactCookie = __webpack_require__(3);
+  var _reactCookie = __webpack_require__(6);
 
   var _reactCookie2 = _interopRequireDefault(_reactCookie);
 
@@ -814,7 +813,13 @@ module.exports =
     }, {
       key: 'logout',
       value: function logout() {
-        _reactCookie2['default'].remove('apiToken');
+        // cookie.remove('apiToken', {domain: process.env.NODE_ENV == 'development' ? 'localhost:3000' : 'noobskins.com'});
+        // cookie.remove('apiToken');
+        if (false) {
+          $.removeCookie('apiToken');
+        } else {
+          $.removeCookie('apiToken', { domain: 'noobskins.com' });
+        }
       }
     }, {
       key: 'render',
@@ -938,7 +943,7 @@ module.exports =
 
   var _react2 = _interopRequireDefault(_react);
 
-  var _reactCookie = __webpack_require__(3);
+  var _reactCookie = __webpack_require__(6);
 
   var _reactCookie2 = _interopRequireDefault(_reactCookie);
 
@@ -962,7 +967,7 @@ module.exports =
 
   /* Children components */
 
-  var _LoginButton = __webpack_require__(4);
+  var _LoginButton = __webpack_require__(3);
 
   var _LoginButton2 = _interopRequireDefault(_LoginButton);
 
@@ -1053,7 +1058,7 @@ module.exports =
 
   function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-  var _fbjsLibExecutionEnvironment = __webpack_require__(6);
+  var _fbjsLibExecutionEnvironment = __webpack_require__(5);
 
   var _historyLibCreateBrowserHistory = __webpack_require__(24);
 
@@ -1533,7 +1538,7 @@ module.exports =
 /* 20 */
 /***/ function(module, exports, __webpack_require__) {
 
-  exports = module.exports = __webpack_require__(5)();
+  exports = module.exports = __webpack_require__(4)();
   // imports
 
 
@@ -1547,7 +1552,7 @@ module.exports =
 /* 21 */
 /***/ function(module, exports, __webpack_require__) {
 
-  exports = module.exports = __webpack_require__(5)();
+  exports = module.exports = __webpack_require__(4)();
   // imports
 
 
