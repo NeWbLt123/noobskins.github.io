@@ -1356,7 +1356,7 @@ module.exports =
         if (!apiCookie) return;
         $.ajax({
           type: 'get',
-          url: 'http://localhost:8080/api/users/my/items',
+          url:  false ? 'http://localhost:8080/api/users/my/items' : 'http://api.noobskins.com/api/users/my/items',
           headers: {
             'x-access-token': apiCookie
           },
@@ -1403,11 +1403,7 @@ module.exports =
           );
 
           return itemsArray;
-        } else return _react2['default'].createElement(
-          'div',
-          null,
-          'ok'
-        );
+        } else return _react2['default'].createElement('span', null);
       }
     }]);
 
