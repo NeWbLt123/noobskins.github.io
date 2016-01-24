@@ -378,8 +378,7 @@ module.exports =
           card: {
             display: 'inline-block',
             height: '300px',
-            marginBottom: '10px',
-            marginRight: '10px',
+            margin: '5px',
             width: '300px'
           },
           cardTitle: {
