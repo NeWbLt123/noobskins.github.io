@@ -620,7 +620,7 @@ module.exports =
     _createClass(_default, [{
       key: 'componentDidMount',
       value: function componentDidMount() {
-        if ($.cookie('steamid')) {
+        if ($.cookie('steamInfo') && JSON.parse($.cookie('steamInfo')).steamid) {
           this.setState({
             isLogged: true
           });
@@ -745,7 +745,7 @@ module.exports =
                     name: object.name,
                     tags: object.tags,
                     tradable: object.tradable,
-                    steamid: $.cookie('steamid') || ''
+                    steamid: $.cookie('steamInfo') ? JSON.parse($.cookie('steamInfo')).steamid || '' : ''
                   };
 
                   if (object.market_actions) {
@@ -903,6 +903,10 @@ module.exports =
       value: function componentDidMount() {
         this.getUser();
       }
+
+      /*
+       * Gets user basic informations alongside his steam informations.
+       */
     }, {
       key: 'getUser',
       value: function getUser() {
@@ -910,33 +914,68 @@ module.exports =
 
         var apiCookie = $.cookie('apiToken');
         if (apiCookie) {
-          $.ajax({
-            url:  false ? 'http://localhost:8080/api/users/my' : 'http://api.noobskins.com/api/users/my',
-            type: 'GET',
-            headers: {
-              'x-access-token': apiCookie
-            }, success: (function (data) {
+          $.when(this.getUserInfo(apiCookie), this.getSteamInfoAndCreateCookie(apiCookie)).done((function (userInfoResponse, steamInfoResponse) {
+
+            self.setState({
+              userInformationRequested: true
+            });
+
+            var userInfoObject = userInfoResponse[0];
+            var steamInfoObject = steamInfoResponse[0];
+
+            if (userInfoObject.success && steamInfoObject.success) {
               self.setState({
-                userInformationRequested: true
+                userInformationReceived: true,
+                credits: userInfoObject.response.currency,
+                avatar: steamInfoObject.response.avatar,
+                name: steamInfoObject.response.name
               });
-              if (data.success) {
-                self.setState({
-                  userInformationReceived: true,
-                  credits: data.response.user.currency,
-                  avatar: data.response.steamInfo.avatar,
-                  name: data.response.steamInfo.name
-                });
-
-                if (!$.cookie('steamid')) {
-                  $.cookie('steamid', data.response.steamInfo.steamid);
-                }
-              }
-            }).bind(this)
-
-          });
+            }
+          }).bind(self));
         } else {
           self.setState({
             userInformationRequested: true
+          });
+        }
+      }
+
+      /*
+       * Gets user basic informations.
+       * Returns a jQuery ajax object.
+       */
+    }, {
+      key: 'getUserInfo',
+      value: function getUserInfo(token) {
+        return $.ajax({
+          url:  false ? 'http://localhost:8080/api/users/my' : 'http://api.noobskins.com/api/users/my',
+          type: 'GET',
+          headers: {
+            'x-access-token': token
+          }
+        });
+      }
+
+      /*
+       * Gets user steam informations and creates a cookie if none exists.
+       * Returns a jQuery ajax object or a resolved object if the information is already stored in a cookie.
+       */
+    }, {
+      key: 'getSteamInfoAndCreateCookie',
+      value: function getSteamInfoAndCreateCookie(token) {
+        if ($.cookie('steamInfo')) {
+
+          /* The method calling this method shouldn't have to care if we retrieve the information from an ajax request or from the cookie. Jquery's $.when allows for multiple ajax requests to be joined
+             and takes a callback function as a parameter returning, for each request, an array that looks like this [ data, statusText, jqXHR ]. */
+          return [{ "success": true, "response": JSON.parse($.cookie('steamInfo')) }];
+        } else {
+          return $.ajax({
+            url:  false ? 'http://localhost:8080/api/steam/myInformation' : 'http://api.noobskins.com/api/steam/myInformation',
+            type: 'GET',
+            headers: {
+              'x-access-token': token
+            }, success: function success(steamInfo) {
+              $.cookie('steamInfo', JSON.stringify(steamInfo.response));
+            }
           });
         }
       }
@@ -1243,7 +1282,7 @@ module.exports =
         } else {
           $.removeCookie('apiToken', { domain: 'noobskins.com' });
         }
-        $.removeCookie('steamid');
+        $.removeCookie('steamInfo');
       }
     }, {
       key: 'render',
@@ -1836,7 +1875,7 @@ module.exports =
                 name: object.name,
                 tags: object.tags,
                 tradable: object.tradable,
-                steamid: $.cookie('steamid') || ''
+                steamid: JSON.parse($.cookie('steamInfo')).steamid || ''
               };
 
               if (object.market_actions) {
