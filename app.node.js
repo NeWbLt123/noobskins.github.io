@@ -974,7 +974,12 @@ module.exports =
             headers: {
               'x-access-token': token
             }, success: function success(steamInfo) {
-              $.cookie('steamInfo', JSON.stringify(steamInfo.response));
+
+              if (false) {
+                $.cookie('steamInfo', JSON.stringify(steamInfo.response));
+              } else {
+                $.cookie('steamInfo', JSON.stringify(steamInfo.response), { domain: 'noobskins.com' });
+              }
             }
           });
         }
@@ -1279,10 +1284,11 @@ module.exports =
       value: function logout() {
         if (false) {
           $.removeCookie('apiToken');
+          $.removeCookie('steamInfo');
         } else {
           $.removeCookie('apiToken', { domain: 'noobskins.com' });
+          $.removeCookie('steamInfo', { domain: 'noobskins.com' });
         }
-        $.removeCookie('steamInfo');
       }
     }, {
       key: 'render',
