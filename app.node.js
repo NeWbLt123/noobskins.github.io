@@ -398,6 +398,14 @@ module.exports =
         return url;
       }
     }, {
+      key: 'getImageUrl',
+      value: function getImageUrl() {
+        var weaponName = this.props.name.split("StatTrak™ ").join("").split("|").join("_").split(" ").join("").split(":").join("");
+        var url = "./img/weapons/" + weaponName + ".png";
+
+        return url;
+      }
+    }, {
       key: 'render',
       value: function render() {
         var _this = this;
@@ -422,7 +430,7 @@ module.exports =
           _react2['default'].createElement(
             _materialUiLibCardCardMedia2['default'],
             { overlayContentStyle: styles.cardMediaOverlay, overlay: _react2['default'].createElement(_materialUiLibCardCardTitle2['default'], { titleStyle: styles.cardTitle, title: this.props.name, subtitle: this.getExterior() }) },
-            _react2['default'].createElement('img', { src: 'https://csgostash.com/img/skins/s686fn.png' })
+            _react2['default'].createElement('img', { src: this.getImageUrl() })
           ),
           _react2['default'].createElement(
             _materialUiLibCardCardActions2['default'],
@@ -751,7 +759,10 @@ module.exports =
                   if (object.market_actions) {
                     inputProps.inspectActionUrl = object.market_actions[0].link;
                   }
-                  return _react2['default'].createElement(_CardsSkinCard2['default'], inputProps);
+
+                  if (object.tradable) {
+                    return _react2['default'].createElement(_CardsSkinCard2['default'], inputProps);
+                  }
                 })
               );
             }
